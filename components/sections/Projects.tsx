@@ -38,8 +38,8 @@ const projects = [
     description: 'Modern, responsive portfolio website with dark mode, animations, and contact form integration.',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop',
-    githubUrl: '#',
-    liveUrl: '#',
+    githubUrl: 'https://github.com/Asif-india/My-Portfolio',
+    liveUrl: 'https://my-portfolio-three-indol-17.vercel.app',
   },
   {
     id: 5,
