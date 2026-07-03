@@ -69,7 +69,7 @@ export default function Contact() {
             Get In <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">Touch</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to bring your ideas to life
+            Have a project in mind? Let&apos;s work together to bring your ideas to life
           </p>
         </motion.div>
 
@@ -155,7 +155,7 @@ export default function Contact() {
               >
                 <FaCheck className="w-5 h-5 text-green-600 dark:text-green-400" />
                 <p className="text-green-800 dark:text-green-200 font-medium">
-                  Message sent successfully! I'll get back to you soon.
+                  Message sent successfully! I&apos;ll get back to you soon.
                 </p>
               </motion.div>
             )}

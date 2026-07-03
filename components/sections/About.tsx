@@ -92,7 +92,7 @@ export default function About() {
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Professional Introduction</h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                I'm a passionate Full Stack Developer with over 2+ years of experience building modern web applications. I specialize in creating scalable, performant, and user-centric solutions using cutting-edge technologies.
+                I&apos;m a passionate Full Stack Developer with over 2+ years of experience building modern web applications. I specialize in creating scalable, performant, and user-centric solutions using cutting-edge technologies.
               </p>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                 My journey in tech started with a curiosity about how things work on the web, which evolved into a deep passion for crafting exceptional digital experiences. I believe in writing clean, maintainable code and continuously learning to stay ahead in this ever-evolving field.

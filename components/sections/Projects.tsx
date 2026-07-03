@@ -6,12 +6,13 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 const projects = [
   {
     id: 1,
-    title: 'Student Management System',
-    description: 'A comprehensive system for managing student records, grades, and attendance with role-based access control.',
-    techStack: ['React', 'Node.js', 'MongoDB', 'Express'],
+    title: 'Student Management System (MERN)',
+    description: 'Production-ready MERN Student Management System featuring JWT authentication, role-based access control, student & teacher management, attendance tracking, analytics dashboard, and responsive UI.',
+    techStack: ['React', 'TypeScript', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Tailwind CSS'],
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
-    githubUrl: '#',
-    liveUrl: '#',
+    githubUrl: 'https://github.com/Asif-india/student-management-system',
+    liveUrl: 'https://student-management-system-frontend-sage.vercel.app',
+    badge: '🚀 Live',
   },
   {
     id: 2,
@@ -100,6 +101,12 @@ export default function Projects() {
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 />
+                {/* Badge */}
+                {project.badge && (
+                  <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-bold rounded-full shadow-lg z-10">
+                    {project.badge}
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
