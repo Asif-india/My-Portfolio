@@ -1,9 +1,48 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase, FaFire, FaChartBar, FaVuejs, FaServer } from 'react-icons/fa';
+import { Code, Database, Layout, Cpu, Zap, Layers, Globe, Box } from 'lucide-react';
+import Image from 'next/image';
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  techStack: string[];
+  image: string;
+  githubUrl: string;
+  liveUrl: string;
+  isLive?: boolean;
+}
+
+const getTechIcon = (tech: string) => {
+  const techLower = tech.toLowerCase();
+  
+  // React Icons
+  if (techLower.includes('react')) return FaReact;
+  if (techLower.includes('node')) return FaNodeJs;
+  if (techLower.includes('database') || techLower.includes('mongo') || techLower.includes('mysql') || techLower.includes('postgres')) return FaDatabase;
+  if (techLower.includes('firebase')) return FaFire;
+  if (techLower.includes('chart')) return FaChartBar;
+  if (techLower.includes('vue')) return FaVuejs;
+  if (techLower.includes('express') || techLower.includes('server')) return FaServer;
+  
+  // Lucide Icons
+  if (techLower.includes('next')) return Layout;
+  if (techLower.includes('type')) return Code;
+  if (techLower.includes('tailwind')) return Layers;
+  if (techLower.includes('jwt') || techLower.includes('auth')) return Zap;
+  if (techLower.includes('prisma')) return Database;
+  if (techLower.includes('socket')) return Globe;
+  if (techLower.includes('d3') || techLower.includes('data')) return Cpu;
+  if (techLower.includes('motion')) return Box;
+  
+  // Default
+  return Code;
+};
+
+const projects: Project[] = [
   {
     id: 1,
     title: 'Student Management System (MERN)',
@@ -12,7 +51,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
     githubUrl: 'https://github.com/Asif-india/student-management-system',
     liveUrl: 'https://student-management-system-frontend-sage.vercel.app',
-    badge: '🚀 Live',
+    isLive: true,
   },
   {
     id: 2,
@@ -40,6 +79,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop',
     githubUrl: 'https://github.com/Asif-india/My-Portfolio',
     liveUrl: 'https://my-portfolio-three-indol-17.vercel.app',
+    isLive: true,
   },
   {
     id: 5,
@@ -88,26 +128,51 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col"
+              transition={{ delay: index * 0.1, duration: 0.25, ease: 'easeOut' }}
+              whileHover={{ 
+                y: -4,
+                boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)',
+              }}
+              className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all flex flex-col border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700"
             >
               {/* Project Image */}
-              <div className="relative h-48 overflow-hidden group">
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                {/* Badge */}
-                {project.badge && (
-                  <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-bold rounded-full shadow-lg z-10">
-                    {project.badge}
-                  </div>
+              <div className="relative h-56 overflow-hidden group">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="w-full h-full"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </motion.div>
+                
+                {/* Permanent Bottom Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+                
+                {/* Dark Gradient Overlay on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Live Badge */}
+                {project.isLive && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.15 }}
+                    className="absolute top-3 right-3 z-10"
+                  >
+                    <span className="flex items-center gap-1 px-2 py-0.5 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm text-green-600 dark:text-green-400 text-[9px] font-semibold rounded-full shadow-sm">
+                      <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse" />
+                      Live
+                    </span>
+                  </motion.div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
               </div>
 
               {/* Project Content */}
@@ -118,7 +183,7 @@ export default function Projects() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.2 }}
-                  className="text-xl font-bold text-gray-900 dark:text-white mb-3"
+                  className="text-xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight"
                 >
                   {project.title}
                 </motion.h3>
@@ -129,7 +194,7 @@ export default function Projects() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.3 }}
-                  className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3"
+                  className="text-gray-600 dark:text-gray-400 text-sm mb-5 line-clamp-2 leading-relaxed"
                 >
                   {project.description}
                 </motion.p>
@@ -142,14 +207,26 @@ export default function Projects() {
                   transition={{ delay: index * 0.1 + 0.4 }}
                   className="flex flex-wrap gap-2 mb-6"
                 >
-                  {project.techStack.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {project.techStack.map((tech, techIndex) => {
+                    const TechIcon = getTechIcon(tech);
+                    return (
+                      <motion.span
+                        key={techIndex}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 + 0.4 + techIndex * 0.05 }}
+                        whileHover={{ 
+                          scale: 1.02,
+                          y: -2,
+                        }}
+                        className="px-2.5 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-xs font-medium border border-indigo-200 dark:border-indigo-700/50 shadow-sm hover:shadow-md transition-all duration-250 cursor-default h-8 flex items-center gap-1.5"
+                      >
+                        <TechIcon className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="truncate">{tech}</span>
+                      </motion.span>
+                    );
+                  })}
                 </motion.div>
 
                 {/* Action Buttons */}
@@ -164,9 +241,11 @@ export default function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-900 dark:bg-gray-700 text-white rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
+                    aria-label={`View ${project.title} on GitHub`}
+                    whileHover={{ scale: 1.02, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}
+                    whileTap={{ scale: 0.98 }}
+                    whileFocus={{ scale: 1.02, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-md hover:shadow-lg"
                   >
                     <FaGithub className="w-4 h-4" />
                     GitHub
@@ -175,9 +254,11 @@ export default function Projects() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-medium hover:from-indigo-600 hover:to-purple-600 transition-colors"
+                    aria-label={`View live demo of ${project.title}`}
+                    whileHover={{ scale: 1.02, boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)' }}
+                    whileTap={{ scale: 0.98 }}
+                    whileFocus={{ scale: 1.02, boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)' }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl font-medium hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-md hover:shadow-lg"
                   >
                     <FaExternalLinkAlt className="w-4 h-4" />
                     Live Demo
