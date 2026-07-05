@@ -14,6 +14,7 @@ interface Project {
   githubUrl: string;
   liveUrl: string;
   isLive?: boolean;
+  isAvailable?: boolean;
 }
 
 const getTechIcon = (tech: string) => {
@@ -52,6 +53,7 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/Asif-india/student-management-system',
     liveUrl: 'https://student-management-system-frontend-sage.vercel.app',
     isLive: true,
+    isAvailable: true,
   },
   {
     id: 2,
@@ -59,8 +61,9 @@ const projects: Project[] = [
     description: 'Full-featured HR management system with payroll, leave management, and employee performance tracking.',
     techStack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma'],
     image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop',
-    githubUrl: '#',
-    liveUrl: '#',
+    githubUrl: '',
+    liveUrl: '',
+    isAvailable: false,
   },
   {
     id: 3,
@@ -68,8 +71,9 @@ const projects: Project[] = [
     description: 'Real-time dashboard for tracking sales leads with analytics, reporting, and automated follow-up systems.',
     techStack: ['React', 'Firebase', 'Chart.js', 'Tailwind CSS'],
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    githubUrl: '#',
-    liveUrl: '#',
+    githubUrl: '',
+    liveUrl: '',
+    isAvailable: false,
   },
   {
     id: 4,
@@ -80,6 +84,7 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/Asif-india/My-Portfolio',
     liveUrl: 'https://my-portfolio-three-indol-17.vercel.app',
     isLive: true,
+    isAvailable: true,
   },
   {
     id: 5,
@@ -87,8 +92,9 @@ const projects: Project[] = [
     description: 'Customer Relationship Management system with contact management, deal tracking, and email automation.',
     techStack: ['Vue.js', 'Node.js', 'MongoDB', 'Socket.io'],
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
-    githubUrl: '#',
-    liveUrl: '#',
+    githubUrl: '',
+    liveUrl: '',
+    isAvailable: false,
   },
   {
     id: 6,
@@ -96,8 +102,9 @@ const projects: Project[] = [
     description: 'Powerful admin dashboard with data visualization, user management, and real-time analytics.',
     techStack: ['React', 'D3.js', 'Express', 'MySQL'],
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    githubUrl: '#',
-    liveUrl: '#',
+    githubUrl: '',
+    liveUrl: '',
+    isAvailable: false,
   },
 ];
 
@@ -237,32 +244,57 @@ export default function Projects() {
                   transition={{ delay: index * 0.1 + 0.5 }}
                   className="flex gap-3 mt-auto"
                 >
-                  <motion.a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} on GitHub`}
-                    whileHover={{ scale: 1.02, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}
-                    whileTap={{ scale: 0.98 }}
-                    whileFocus={{ scale: 1.02, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-md hover:shadow-lg"
-                  >
-                    <FaGithub className="w-4 h-4" />
-                    GitHub
-                  </motion.a>
-                  <motion.a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View live demo of ${project.title}`}
-                    whileHover={{ scale: 1.02, boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)' }}
-                    whileTap={{ scale: 0.98 }}
-                    whileFocus={{ scale: 1.02, boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)' }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl font-medium hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-md hover:shadow-lg"
-                  >
-                    <FaExternalLinkAlt className="w-4 h-4" />
-                    Live Demo
-                  </motion.a>
+                  {project.isAvailable ? (
+                    <>
+                      <motion.a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.title} on GitHub`}
+                        whileHover={{ scale: 1.02, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}
+                        whileTap={{ scale: 0.98 }}
+                        whileFocus={{ scale: 1.02, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-md hover:shadow-lg"
+                      >
+                        <FaGithub className="w-4 h-4" />
+                        GitHub
+                      </motion.a>
+                      <motion.a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View live demo of ${project.title}`}
+                        whileHover={{ scale: 1.02, boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)' }}
+                        whileTap={{ scale: 0.98 }}
+                        whileFocus={{ scale: 1.02, boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)' }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl font-medium hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-md hover:shadow-lg"
+                      >
+                        <FaExternalLinkAlt className="w-4 h-4" />
+                        Live Demo
+                      </motion.a>
+                    </>
+                  ) : (
+                    <>
+                      <motion.button
+                        disabled
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-medium opacity-50 cursor-not-allowed shadow-md"
+                      >
+                        <FaGithub className="w-4 h-4" />
+                        Coming Soon
+                      </motion.button>
+                      <motion.button
+                        disabled
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl font-medium opacity-50 cursor-not-allowed shadow-md"
+                      >
+                        <FaExternalLinkAlt className="w-4 h-4" />
+                        Coming Soon
+                      </motion.button>
+                    </>
+                  )}
                 </motion.div>
               </div>
             </motion.div>

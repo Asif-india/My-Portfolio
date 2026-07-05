@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaBriefcase, FaCode, FaUser, FaMapMarkerAlt, FaEnvelope, FaPhone, FaCalendar, FaGlobe, FaLaptopCode } from 'react-icons/fa';
+import { FaGraduationCap, FaBriefcase, FaCode, FaUser, FaMapMarkerAlt, FaEnvelope, FaPhone, FaCalendar, FaGlobe, FaLaptopCode, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaFigma } from 'react-icons/fa';
+import { Layout, Code, Layers, Box, Database, Cpu, Terminal } from 'lucide-react';
 
 const careerJourney = [
   {
@@ -28,7 +29,8 @@ const education = [
   {
     year: "2015 - 2019",
     degree: "Bachelor of Technology (Mechanical Engineering)",
-    institution: "MIT",
+    institution: "Millia Institute of Technology",
+    location: "Purnea, Bihar, India",
     description:
       "Completed Bachelor's degree in Mechanical Engineering and developed strong analytical and problem-solving skills.",
     icon: FaGraduationCap,
@@ -37,11 +39,38 @@ const education = [
     year: "2023 - Present",
     degree: "Full Stack Web Development",
     institution: "Self Learning & Professional Projects",
+    location: "Delhi, India",
     description:
       "Learning and building modern web applications using React, Next.js, TypeScript, Node.js, Express.js, MongoDB, and other modern technologies.",
     icon: FaLaptopCode,
   },
 ];
+
+const getTechIcon = (tech: string) => {
+  const techLower = tech.toLowerCase();
+  
+  // React Icons
+  if (techLower.includes('react')) return FaReact;
+  if (techLower.includes('node')) return FaNodeJs;
+  if (techLower.includes('git')) return FaGitAlt;
+  if (techLower.includes('github')) return FaGithub;
+  if (techLower.includes('figma')) return FaFigma;
+  
+  // Lucide Icons
+  if (techLower.includes('next')) return Layout;
+  if (techLower.includes('type')) return Code;
+  if (techLower.includes('tailwind')) return Layers;
+  if (techLower.includes('motion')) return Box;
+  if (techLower.includes('mongo')) return Database;
+  if (techLower.includes('postgres')) return Database;
+  if (techLower.includes('express')) return Terminal;
+  if (techLower.includes('api')) return Cpu;
+  if (techLower.includes('vs code')) return Code;
+  if (techLower.includes('postman')) return Terminal;
+  
+  // Default
+  return Code;
+};
 
 const techStack = [
   { category: 'Frontend', technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
@@ -102,50 +131,7 @@ export default function About() {
         </motion.div>
 
         {/* Two Column Layout */}
-        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"> */}
         <div className="grid grid-cols-1 gap-8 mb-12">
-          {/* Career Journey - Timeline */}
-          {/* <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl">
-                <FaBriefcase className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Career Journey</h3>
-            </div>
-            
-            <div className="space-y-8">
-              {careerJourney.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  className="relative pl-8 border-l-2 border-indigo-500 dark:border-indigo-400"
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 + index * 0.1 }}
-                    className="absolute left-0 top-0 w-4 h-4 bg-indigo-500 rounded-full transform -translate-x-1/2"
-                  />
-                  <div className="mb-2">
-                    <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">{item.year}</span>
-                  </div>
-                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{item.title}</h4>
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{item.company}</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div> */}
 
           {/* Education */}
           <motion.div
@@ -153,7 +139,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700"
           >
             {/* Section Header */}
             <div className="text-center mb-12">
@@ -161,7 +147,7 @@ export default function About() {
                 <div className="p-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl shadow-lg">
                   <FaGraduationCap className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 dark:text-white">Education & Learning Journey</h3>
+                <h3 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Education & Learning Journey</h3>
               </div>
               <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 The foundation of my academic background and technical growth
@@ -185,7 +171,7 @@ export default function About() {
                       initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.2 }}
+                      transition={{ delay: index * 0.2, duration: 0.3, ease: 'easeOut' }}
                       className={`relative flex items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                     >
                       {/* Content Card */}
@@ -193,18 +179,21 @@ export default function About() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: index * 0.2 + 0.1 }}
-                        whileHover={{ scale: 1.02 }}
+                        transition={{ delay: index * 0.2 + 0.1, duration: 0.3, ease: 'easeOut' }}
+                        whileHover={{ 
+                          y: -4,
+                          boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)',
+                        }}
                         className={`w-full md:w-5/12 ${isEven ? 'md:pr-8' : 'md:pl-8'} text-left`}
                       >
-                        <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                        <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300">
                           {/* Year */}
                           <motion.span
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 + 0.2 }}
-                            className="inline-block px-4 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-full mb-3 text-left"
+                            className="inline-block px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-semibold rounded-full mb-3 shadow-sm"
                           >
                             {item.year}
                           </motion.span>
@@ -215,7 +204,7 @@ export default function About() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 + 0.3 }}
-                            className="text-2xl font-bold text-gray-900 dark:text-white mb-3"
+                            className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight tracking-tight"
                           >
                             {item.degree}
                           </motion.h3>
@@ -226,10 +215,23 @@ export default function About() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 + 0.35 }}
-                            className="text-indigo-600 dark:text-indigo-400 font-semibold mb-2"
+                            className="text-indigo-600 dark:text-indigo-400 font-semibold mb-1 text-sm"
                           >
                             {item.institution}
                           </motion.p>
+
+                          {/* Location */}
+                          {item.location && (
+                            <motion.p
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: index * 0.2 + 0.375 }}
+                              className="text-gray-400 dark:text-gray-500 text-sm mb-3"
+                            >
+                              {item.location}
+                            </motion.p>
+                          )}
 
                           {/* Description */}
                           <motion.p
@@ -237,7 +239,7 @@ export default function About() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 + 0.4 }}
-                            className="text-gray-600 dark:text-gray-400"
+                            className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
                           >
                             {item.description}
                           </motion.p>
@@ -250,9 +252,9 @@ export default function About() {
                           initial={{ opacity: 0, scale: 0 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
-                          transition={{ delay: index * 0.2 + 0.15 }}
-                          whileHover={{ scale: 1.2 }}
-                          className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg"
+                          transition={{ delay: index * 0.2 + 0.15, duration: 0.3, ease: 'easeOut' }}
+                          whileHover={{ scale: 1.05 }}
+                          className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg border-4 border-white dark:border-gray-800"
                         >
                           <Icon className="text-white text-3xl" />
                         </motion.div>
@@ -267,7 +269,7 @@ export default function About() {
             </div>
 
             {/* Mobile Timeline */}
-            <div className="md:hidden space-y-8 mt-12">
+            <div className="md:hidden space-y-6 mt-12">
               {education.map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -276,26 +278,40 @@ export default function About() {
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: index * 0.1, duration: 0.3, ease: 'easeOut' }}
                     className="flex items-start gap-4"
                   >
                     <motion.div
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 + 0.1 }}
-                      className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center"
+                      transition={{ delay: index * 0.1 + 0.1, duration: 0.3, ease: 'easeOut' }}
+                      whileHover={{ scale: 1.05 }}
+                      className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center shadow-md border-4 border-white dark:border-gray-800"
                     >
                       <Icon className="w-6 h-6 text-white" />
                     </motion.div>
-                    <div className="flex-1 bg-gray-50 dark:bg-gray-900 p-5 rounded-xl shadow-lg">
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-semibold rounded-full mb-2">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + 0.15, duration: 0.3, ease: 'easeOut' }}
+                      whileHover={{ 
+                        y: -4,
+                        boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)',
+                      }}
+                      className="flex-1 bg-gray-50 dark:bg-gray-900 p-5 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300"
+                    >
+                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-semibold rounded-full mb-2 shadow-sm">
                         {item.year}
                       </span>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.degree}</h3>
-                      <p className="text-indigo-600 dark:text-indigo-400 font-semibold mb-2">{item.institution}</p>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">{item.description}</p>
-                    </div>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight tracking-tight">{item.degree}</h3>
+                      <p className="text-indigo-600 dark:text-indigo-400 font-semibold mb-1 text-sm">{item.institution}</p>
+                      {item.location && (
+                        <p className="text-gray-400 dark:text-gray-500 text-sm mb-2">{item.location}</p>
+                      )}
+                      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                    </motion.div>
                   </motion.div>
                 );
               })}
@@ -309,13 +325,13 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="bg-white dark:bg-gray-800 rounded-2xl p-8 mb-12 shadow-lg"
+          className="bg-white dark:bg-gray-800 rounded-2xl p-8 mb-12 shadow-lg border border-gray-200 dark:border-gray-700"
         >
           <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl">
+            <div className="p-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl shadow-md">
               <FaCode className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Technical Overview</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Technical Overview</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -325,20 +341,35 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl"
+                transition={{ delay: 0.6 + index * 0.1, duration: 0.3, ease: 'easeOut' }}
+                whileHover={{ 
+                  y: -3,
+                  boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)',
+                }}
+                className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-200 dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300"
               >
-                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">{category.category}</h4>
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 tracking-tight">{category.category}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {category.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {category.technologies.map((tech, techIndex) => {
+                    const TechIcon = getTechIcon(tech);
+                    return (
+                      <motion.span
+                        key={techIndex}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.6 + index * 0.1 + techIndex * 0.05, duration: 0.25, ease: 'easeOut' }}
+                        whileHover={{ 
+                          scale: 1.02,
+                          y: -2,
+                        }}
+                        className="px-2.5 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-xs font-medium border border-indigo-200 dark:border-indigo-700/50 shadow-sm hover:shadow-md transition-all duration-250 cursor-default h-8 flex items-center gap-1.5"
+                      >
+                        <TechIcon className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="truncate">{tech}</span>
+                      </motion.span>
+                    );
+                  })}
                 </div>
               </motion.div>
             ))}

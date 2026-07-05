@@ -8,7 +8,7 @@ const timelineData = [
     year: '2021 - 2023',
     title: 'HVAC Project Engineer',
     icon: FaGraduationCap,
-    description: 'Managed HVAC project execution including installation, site coordination, progress monitoring, technical documentation, and reporting, ensuring compliance with quality standards, safety regulations, and project timelines.',
+    description: 'Managed HVAC project execution, site coordination, technical documentation, and quality compliance while ensuring timely project delivery.',
     color: 'from-blue-500 to-cyan-500',
   },
   {
