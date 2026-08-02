@@ -75,7 +75,7 @@ const getTechIcon = (tech: string) => {
 const techStack = [
   { category: 'Frontend', technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
   { category: 'Backend', technologies: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'REST APIs'] },
-  { category: 'Tools', technologies: ['Git', 'GitHub', 'VS Code', 'Postman', 'Figma'] },
+  { category: 'Tools', technologies: ['Git', 'GitHub', 'VS Code', 'Postman'] },
 ];
 
 const personalInfo = [
