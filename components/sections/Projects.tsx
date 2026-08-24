@@ -62,7 +62,7 @@ const projects: Project[] = [
     techStack: ['React', 'TypeScript', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Tailwind CSS'],
     image: '/project images/student-management-system.jpg',
     githubUrl: 'https://github.com/Asif-india/student-management-system',
-    liveUrl: 'https://student-management-system-frontend-sage.vercel.app',
+    liveUrl: 'https://student-management-system-frontend-omega-eight.vercel.app',
     isLive: true,
     isAvailable: true,
   },

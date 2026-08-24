@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const socialLinks = [
-  { name: 'GitHub', icon: FaGithub, href: '#' },
-  { name: 'LinkedIn', icon: FaLinkedin, href: '#' },
-  { name: 'Twitter', icon: FaTwitter, href: '#' },
-  { name: 'Email', icon: FaEnvelope, href: 'mailto:contact@example.com' },
+  { name: 'GitHub', icon: FaGithub, href: 'https://github.com/Asif-india' },
+  { name: 'LinkedIn', icon: FaLinkedin, href: 'https://www.linkedin.com/in/asif-zamil-a07b83206' },
+  { name: 'X', icon: FaXTwitter, href: null },
+  { name: 'Email', icon: FaEnvelope, href: 'mailto:asifzamil07@gmail.com' },
 ];
 
 export default function Footer() {
@@ -33,20 +34,36 @@ export default function Footer() {
             transition={{ delay: 0.2 }}
             className="flex space-x-6"
           >
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label={link.name}
-              >
-                <link.icon className="w-5 h-5" />
-              </motion.a>
-            ))}
+            {socialLinks.map((link) => {
+              const Icon = link.icon;
+
+              if (!link.href) {
+                return (
+                  <span
+                    key={link.name}
+                    className="text-gray-600 dark:text-gray-400 cursor-default"
+                    aria-label={`${link.name} - coming soon`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </span>
+                );
+              }
+
+              return (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={link.name}
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              );
+            })}
           </motion.div>
         </div>
       </div>
